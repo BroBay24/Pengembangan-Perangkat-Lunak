@@ -11,7 +11,7 @@ class Perintah(ABC):
         pass
 
 # Implementasi Perintah
-class TambahTugasPerintah(Perintah):
+class TambahTugas(Perintah):
     def __init__(self, daftar_tugas, tugas):
         self.daftar_tugas = daftar_tugas
         self.tugas = tugas
@@ -22,7 +22,7 @@ class TambahTugasPerintah(Perintah):
     def undo(self):
         self.daftar_tugas.hapus_tugas(self.tugas)
 
-class HapusTugasPerintah(Perintah):
+class HapusTugas(Perintah):
     def __init__(self, daftar_tugas, tugas):
         self.daftar_tugas = daftar_tugas
         self.tugas = tugas
@@ -33,7 +33,7 @@ class HapusTugasPerintah(Perintah):
     def undo(self):
         self.daftar_tugas.tambah_tugas(self.tugas)
 
-class TandaiSelesaiPerintah(Perintah):
+class TandaiSelesai(Perintah):
     def __init__(self, daftar_tugas, tugas):
         self.daftar_tugas = daftar_tugas
         self.tugas = tugas
@@ -77,7 +77,7 @@ class DaftarTugas:
             print(f"- {tugas}: {status}")
 
 # Kelas ManajerPerintah
-class ManajerPerintah:
+class command:
     def __init__(self):
         self.riwayat = []
         self.tumpukan_ulangi = []
@@ -105,7 +105,7 @@ class ManajerPerintah:
 
 # Program Utama
 daftar_tugas = DaftarTugas()
-manajer = ManajerPerintah()
+manajer = command()
 
 while True:
     print("\nMenu:")
@@ -121,19 +121,19 @@ while True:
 
     if pilihan == "1":
         tugas = input("Masukkan nama tugas: ")
-        perintah = TambahTugasPerintah(daftar_tugas, tugas)
+        perintah = TambahTugas(daftar_tugas, tugas)
         manajer.jalankan_perintah(perintah)
 
     elif pilihan == "2":
         daftar_tugas.tampilkan_tugas()
         tugas = input("Masukkan nama tugas yang akan dihapus: ")
-        perintah = HapusTugasPerintah(daftar_tugas, tugas)
+        perintah = HapusTugas(daftar_tugas, tugas)
         manajer.jalankan_perintah(perintah)
 
     elif pilihan == "3":
         daftar_tugas.tampilkan_tugas()
         tugas = input("Masukkan nama tugas yang akan ditandai selesai: ")
-        perintah = TandaiSelesaiPerintah(daftar_tugas, tugas)
+        perintah = TandaiSelesai(daftar_tugas, tugas)
         manajer.jalankan_perintah(perintah)
 
     elif pilihan == "4":
