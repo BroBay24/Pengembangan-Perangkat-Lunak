@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-# Antarmuka Perintah
+# Perintah
 class Perintah(ABC):
     @abstractmethod
     def execute(self):
@@ -10,7 +10,6 @@ class Perintah(ABC):
     def undo(self):
         pass
 
-# Implementasi Perintah
 class TambahTugas(Perintah):
     def __init__(self, daftar_tugas, tugas):
         self.daftar_tugas = daftar_tugas
@@ -48,7 +47,6 @@ class TandaiSelesai(Perintah):
         if self.tugas in self.daftar_tugas.tugas:
             self.daftar_tugas.tandai_belum_selesai(self.tugas)
 
-# Kelas DaftarTugas
 class DaftarTugas:
     def __init__(self):
         self.tugas = {}
@@ -76,7 +74,6 @@ class DaftarTugas:
             status = "Selesai" if selesai else "Belum Selesai"
             print(f"- {tugas}: {status}")
 
-# Kelas ManajerPerintah
 class command:
     def __init__(self):
         self.riwayat = []
@@ -103,7 +100,7 @@ class command:
         else:
             print("Tidak ada yang bisa diulangi.")
 
-# Program Utama
+# main
 daftar_tugas = DaftarTugas()
 manajer = command()
 
