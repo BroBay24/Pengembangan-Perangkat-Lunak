@@ -6,7 +6,7 @@
 ## Run
 1. Clone/Jalankan file:
 ```bash
-python kalkulator.py
+- python kalkulator.py
 
 
 # Inisialisasi
